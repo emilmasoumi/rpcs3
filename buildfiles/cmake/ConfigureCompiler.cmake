@@ -90,6 +90,13 @@ else()
 		add_compile_options(-Wno-class-memaccess)
 	endif()
 
+	# Experimental only.
+	if(CMAKE_BUILD_TYPE MATCHES "Release" AND NOT MSVC)
+		# NOTE: Increases the likelihood of side effects.
+		#       Needs handpicking instead of group flags.
+		add_compile_options(-O3)
+	endif()
+
 	# Note that this refers to binary size optimization during linking, it differs from optimization compiler level
 	add_link_options(-Wl,-O2)
 
